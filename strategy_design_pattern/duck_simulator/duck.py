@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 
-from strategy_design_pattern_DUCKKK.fly_behaviour import FlyBehaviour
-from strategy_design_pattern_DUCKKK.quak_behaviour import QuackBehaviour
+from strategy_design_pattern.duck_simulator.fly_behaviour import FlyBehaviour
+from strategy_design_pattern.duck_simulator.quak_behaviour import \
+    QuackBehaviour
 
 
 class Duck(ABC):

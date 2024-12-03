@@ -1,6 +1,7 @@
-from strategy_design_pattern_DUCKKK.fly_behaviour import FlyNoWay
-from strategy_design_pattern_DUCKKK.mallard_duck import MallardDuck
-from strategy_design_pattern_DUCKKK.quak_behaviour import Squeak
+
+from strategy_design_pattern.duck_simulator.fly_behaviour import FlyNoWay
+from strategy_design_pattern.duck_simulator.mallard_duck import MallardDuck
+from strategy_design_pattern.duck_simulator.quak_behaviour import Squeak
 
 if __name__ == "__main__":
     duck = MallardDuck()
