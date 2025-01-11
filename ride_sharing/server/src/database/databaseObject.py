@@ -28,7 +28,7 @@ class DatabaseObject:
             raise Exception(f"Unable to connect to DB due to {str(e)}")
 
     def fetch_all(self, query, params=None):
-        cursor = None  # Initialize cursor
+        cursor = None
         try:
             self.connect()
             cursor = self.conn.cursor()
@@ -44,12 +44,13 @@ class DatabaseObject:
                 self.conn.close()
 
     def execute(self, query, params=None):
-        cursor = None  # Initialize cursor
+        cursor = None
         try:
             self.connect()
             cursor = self.conn.cursor()
             cursor.execute(query, params)
             self.conn.commit()
+            return cursor.lastrowid
         except Exception as e:
             print(query, params)
             raise Exception(f"Unable to execute query due to {str(e)}")

@@ -1,6 +1,6 @@
 from flask import Flask
 
-from ride_sharing.server.src.app.routes import initialise_routes
+from src.app.routes import initialise_routes
 
 
 def create_app():

@@ -6,6 +6,7 @@ class FlyBehaviour(ABC):
     def fly(self):
         pass
 
+
 class FlyWithWings(FlyBehaviour):
     def fly(self):
         print("I can fly and I am flying")
@@ -14,4 +15,3 @@ class FlyWithWings(FlyBehaviour):
 class FlyNoWay(FlyBehaviour):
     def fly(self):
         print("I cant fly, my wings doesnt work")
-

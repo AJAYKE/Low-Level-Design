@@ -22,3 +22,7 @@ class UserService:
     def block_user(self, user_id):
         self.user_repository.update_user("is_active", 0, user_id)
         return {"message": f"user account with id {user_id} blocked successfully"}
+
+    def update_to_driver(self, user_id):
+        self.user_repository.update_user("user_role", UserRole.DRIVER.value, user_id)
+        return {"message": f"user role updated successfully"}

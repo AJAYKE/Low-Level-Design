@@ -6,13 +6,16 @@ class QuackBehaviour(ABC):
     def quack(self):
         pass
 
+
 class Quack(QuackBehaviour):
     def quack(self):
         print("I can Quackkkkk")
 
+
 class Squeak(QuackBehaviour):
     def quack(self):
         print("I can ssqueekkk")
+
 
 class MuteQuack(QuackBehaviour):
     def quack(self):

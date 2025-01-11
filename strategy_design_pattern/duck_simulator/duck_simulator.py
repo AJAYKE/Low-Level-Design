@@ -1,4 +1,3 @@
-
 from strategy_design_pattern.duck_simulator.fly_behaviour import FlyNoWay
 from strategy_design_pattern.duck_simulator.mallard_duck import MallardDuck
 from strategy_design_pattern.duck_simulator.quak_behaviour import Squeak
