@@ -1,12 +1,14 @@
 import os
 
 import mysql.connector
-import pyodbc  # type: ignore
+from dotenv import load_dotenv
 from mysql.connector import Error
+
+load_dotenv()
 
 
 class DatabaseObject:
-    def __init__(self, database="Central"):
+    def __init__(self, database="RIDESHARING"):
         self.user_name = os.environ.get("DATABASE_USERNAME")
         self.password = os.environ.get("DATABASE_PASSWORD")
         self.server = os.environ.get("DATABASE_SERVER")
@@ -23,27 +25,45 @@ class DatabaseObject:
                 database=self.database,
             )
         except Error as e:
-            raise Exception(f"unable to connect to db due to {str(e)}")
+            raise Exception(f"Unable to connect to DB due to {str(e)}")
 
-    def fetch_all(self, query, params):
+    def fetch_all(self, query, params=None):
+        cursor = None  # Initialize cursor
         try:
             self.connect()
             cursor = self.conn.cursor()
             cursor.execute(query, params)
             return cursor.fetchall()
         except Error as e:
-            raise Exception(f"unable to get the data due to {str(e)}")
+            print(query, params)
+            raise Exception(f"Unable to fetch data due to {str(e)}")
         finally:
-            cursor.close()
-            self.conn.close()
+            if cursor:
+                cursor.close()
+            if self.conn:
+                self.conn.close()
 
-    def execute(self, query, params):
+    def execute(self, query, params=None):
+        cursor = None  # Initialize cursor
         try:
+            self.connect()
             cursor = self.conn.cursor()
             cursor.execute(query, params)
             self.conn.commit()
         except Exception as e:
-            raise Exception(f"unable to write to db due to {str(e)}")
+            print(query, params)
+            raise Exception(f"Unable to execute query due to {str(e)}")
         finally:
-            cursor.close()
-            self.conn.close()
+            if cursor:
+                cursor.close()
+            if self.conn:
+                self.conn.close()
+
+
+if __name__ == "__main__":
+    db = DatabaseObject()
+    try:
+        db.connect()
+        print("Database connection successful!")
+    except Exception as e:
+        print(f"Failed to connect: {e}")

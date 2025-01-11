@@ -1,13 +1,13 @@
-from ride_sharing.server.src.database.databaseObject import DatabaseObject
-from ride_sharing.server.src.utils.constants import UserRole
+from src.database.databaseObject import DatabaseObject
 
 
 class UserRepository:
-    def __init__(self):
-        self.db = DatabaseObject()
+    def __init__(self, db: DatabaseObject):
+        self.db = db
 
     def create_user(self, user_name, phoneNumber, country, user_role, email_id=None):
-        query = """insert into users (user_name, phoneNumber, country, email_id, user_role) values (%s, %s,%s,%s,%s)"""
+        query = """insert into users (user_name, phone_number, country, email_id, user_role) values (%s, %s,%s,%s,%s)"""
+        print("type(user_role)", type(user_role))
         params = (user_name, phoneNumber, country, email_id, user_role)
         self.db.execute(query=query, params=params)
 
